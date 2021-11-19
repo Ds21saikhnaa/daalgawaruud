@@ -1,0 +1,67 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    background-color: aqua;
+}
+.header{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-top: 0;
+}
+.add_plan{
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: 2px solid black;
+    border-top: 0;
+}
+.add_plan > input {
+    width: 30vw;
+    height: 40px;
+}
+.add_plan > button{
+    height: 44px;
+    width: 50px;
+}
+.list{
+    height: 450px;
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    border: 2px solid black;
+    border-top: 0;
+}
+
+.list > h1{
+    font-size: 40px;
+}
+.vim {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.vim > input {
+    height: 30px;
+    width: 30px;
+}
+.done{
+    height: 400px;
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
+    border: 2px solid black;
+    border-top: 0;
+}
+.done > h1{
+    font-size: 40px;
+}
