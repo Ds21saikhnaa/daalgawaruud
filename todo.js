@@ -1,6 +1,7 @@
 let add = document.querySelector("#click");
 let list = document.querySelector("#wlist");
 let done = document.querySelector("#donel");
+let listId;
 const renderDoc = (doc) => {
   const vim = document.createElement("div");
   const $span = document.createElement("span");
@@ -23,9 +24,10 @@ const renderDoc = (doc) => {
     db.collection("todoList").doc(doc.id).delete();
   };
   $edit.onclick = () => {
-      console.log('hhe');
-      document.getElementById("txt").value = doc.data().list;
-    db.collection("todoList").doc(doc.id).update({isDone: true});
+    document.getElementById("txt").value = doc.data().list;
+    console.log(doc.id);
+    listId = doc.id;
+    db.collection("todoList").doc(doc.id).update({list: document.getElementById("txt").value });
   }
   vim.append(checkBox, $span,$btnDelete, $edit);
   $span.innerText = doc.data().list;
