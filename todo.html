@@ -14,19 +14,37 @@
       </div>
       <div class="slide">
         <div class="add_plan">
-          <input id="txt" type="text" />
-          <button id="click" type="button" onclick="buttonClick('sad')">
+          <input id="txt" type="text" placeholder="hiih yma bich" />
+          <button id="click" type="button" onclick="buttonClick()">
             Add
           </button>
         </div>
         <div id="list" class="list">
-                <h1>waiting list</h1>
+          <h1>waiting list</h1>
+          <div id="wlist" class="wlist"></div>
         </div>
         <div id="done" class="done">
-            <h1>Done list</h1>
+          <h1>Done list</h1>
+          <div id="donel" class="dlist"></div>
         </div>
       </div>
     </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCh1IYhu4tAyn5tzoa7NKTW_OY-ko8wPF0",
+        authDomain: "todolistbase-b78b6.firebaseapp.com",
+        projectId: "todolistbase-b78b6",
+        storageBucket: "todolistbase-b78b6.appspot.com",
+        messagingSenderId: "932144186930",
+        appId: "1:932144186930:web:a9e1ee1749ba9cba791e2b",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+    </script>
     <script src="./todo.js"></script>
   </body>
 </html>
