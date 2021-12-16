@@ -33,6 +33,10 @@
     height: 44px;
     width: 50px;
 }
+.add_plan :nth-child(2){
+    height: 40px;
+    width: 15vw;
+}
 .list{
     height: 450px;
     width: 100%;
@@ -54,9 +58,6 @@
     height: 30px;
     width: 30px;
 }
-.vim :last-child {
-    margin-left: 5px;
-}
 .done{
     height: 500px;
     width: 100%;
@@ -68,4 +69,10 @@
 }
 .done > h1{
     font-size: 40px;
+}
+.vim > span{
+    margin: 5px;
+}
+.vim > input{
+    margin: 5px;
 }

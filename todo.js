@@ -2,8 +2,11 @@ let add = document.querySelector("#click");
 let list = document.querySelector("#wlist");
 let done = document.querySelector("#donel");
 let listId;
+let edit = true;
+let dateNow = Date();
 const renderDoc = (doc) => {
   const vim = document.createElement("div");
+  vim.className = 'vim';
   const $span = document.createElement("span");
   const checkBox = document.createElement("input");
   checkBox.type = "checkbox";
@@ -11,10 +14,12 @@ const renderDoc = (doc) => {
   $btnDelete.innerText = "remove list";
   const $edit = document.createElement("button");
   $edit.innerText = "edit list";
+  const date =  document.createElement("span");
+  date.innerText = doc.data().createdAt.toString().replace("GMT+0800 (Ulaanbaatar Standard Time)",""); 
   function onClick() {
     db.collection("todoList").doc(doc.id).set(
       {
-        checkBox: true,
+        checkBox: !doc.data().checkBox,
       },
       { merge: true }
     );
@@ -24,12 +29,13 @@ const renderDoc = (doc) => {
     db.collection("todoList").doc(doc.id).delete();
   };
   $edit.onclick = () => {
+    edit = false;
     document.getElementById("txt").value = doc.data().list;
     console.log(doc.id);
     listId = doc.id;
-    db.collection("todoList").doc(doc.id).update({list: document.getElementById("txt").value });
-  }
-  vim.append(checkBox, $span,$btnDelete, $edit);
+    console.log(edit);
+  };
+  vim.append(checkBox, $span, date, $btnDelete, $edit);
   $span.innerText = doc.data().list;
 
   if (doc.data().checkBox === false) {
@@ -47,8 +53,16 @@ db.collection("todoList").onSnapshot((col) => {
 });
 const buttonClick = () => {
   let plan = document.getElementById("txt").value;
-  db.collection("todoList").add({
-    list: plan,
-    checkBox: false,
-  });
+  if (edit) {
+    db.collection("todoList").add({
+      list: plan,
+      checkBox: false,
+      createdAt: dateNow,
+    });
+  } else {
+    db.collection("todoList")
+      .doc(listId)
+      .update({ list: document.getElementById("txt").value });
+    edit = true;
+  }
 };
