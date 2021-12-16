@@ -3,10 +3,9 @@ let list = document.querySelector("#wlist");
 let done = document.querySelector("#donel");
 let listId;
 let edit = true;
-let dateNow = Date();
 const renderDoc = (doc) => {
   const vim = document.createElement("div");
-  vim.className = 'vim';
+  vim.className = "vim";
   const $span = document.createElement("span");
   const checkBox = document.createElement("input");
   checkBox.type = "checkbox";
@@ -14,8 +13,8 @@ const renderDoc = (doc) => {
   $btnDelete.innerText = "remove list";
   const $edit = document.createElement("button");
   $edit.innerText = "edit list";
-  const date =  document.createElement("span");
-  date.innerText = doc.data().createdAt.toString().replace("GMT+0800 (Ulaanbaatar Standard Time)",""); 
+  const date = document.createElement("span");
+  date.innerText = doc.data().createdAt;
   function onClick() {
     db.collection("todoList").doc(doc.id).set(
       {
@@ -52,12 +51,13 @@ db.collection("todoList").onSnapshot((col) => {
   }
 });
 const buttonClick = () => {
+  let dateNow = Date();
   let plan = document.getElementById("txt").value;
   if (edit) {
     db.collection("todoList").add({
       list: plan,
       checkBox: false,
-      createdAt: dateNow,
+      createdAt: dateNow.replace("GMT+0800 (Ulaanbaatar Standard Time)", ""),
     });
   } else {
     db.collection("todoList")
